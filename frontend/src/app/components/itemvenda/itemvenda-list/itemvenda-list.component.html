@@ -1,0 +1,56 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <div class="card-title d-flex align-items-center">ItensVenda</div>
+    <div class="card-header-elements d-flex">
+      <app-simple-search (searchEvent)="listHandler.onSearch($event)" [pageSize]="listHandler.pageSize" [currentPage]="listHandler.currentPage">
+      </app-simple-search>
+      <button *ngxPermissionsOnly="['insert-*', 'insert-itemvenda']" id="createButton" class="btn btn-primary d-flex mr-2" type="button" (click)="listHandler.create()">
+        <i class="material-icons mr-1">add</i>
+        Create
+      </button>
+    </div>
+  </div>
+  <hr class="m-0">
+  <div class="card-body">
+    <div id="table">
+      <app-loading [loading]="listHandler.loading"></app-loading>
+      <table *ngIf="!listHandler.loading" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Quantidade</th><th scope="col">Produto</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="center" *ngIf="listHandler.listIsEmpty">
+            <td colspan="100">No items found.</td>
+          </tr>
+          <tr *ngFor="let item of listHandler.items; let i = index">
+            <td id="idItemVenda-{{i}}">{{ item.id }}</td>
+            <td id="quantidadeItemVenda-{{i}}">{{ item.quantidade }}</td><td id="produtoItemVenda-{{i}}">{{ item.produto ? item.produto.nome : 'No produto found.' }}</td>
+            <td align="center">
+              <button *ngxPermissionsOnly="['read-*', 'read-itemvenda']" id="viewItemVenda-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.view(item)">
+                <i class="material-icons">visibility</i>
+              </button>
+              <button *ngxPermissionsOnly="['update-*', 'update-itemvenda']" id="editItemVenda-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.edit(item)">
+                <i class="material-icons text-primary">create</i>
+              </button>
+              <button *ngxPermissionsOnly="['delete-*', 'delete-itemvenda']" id="deleteItemVenda-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.setRemove(item)">
+                <i class="material-icons text-danger">delete</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="!listHandler.listIsEmpty">
+    <div class="datatable-footer">
+      <app-pagination [totalRecords]="listHandler.totalRecords" [setTotalPages]="listHandler.totalPages"
+                      (pageChanged)="listHandler.onChangePaginator($event)" (pageSizeChanged)="listHandler.onChangePageSize($event)"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-delete-confirmation (onOk)="listHandler.remove()"></app-delete-confirmation>

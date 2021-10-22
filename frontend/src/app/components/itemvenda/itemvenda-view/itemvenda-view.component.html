@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="card-title d-flex align-items-center">ItensVenda</div>
+    <div class="card-header-elements">
+      <button (click)="viewHandler.backToList()" class="btn btn-primary d-flex justify-content-center align-items-center">
+        <i class="material-icons mr-2">arrow_back</i> Back
+      </button>
+    </div>
+  </div>
+
+  <hr class="m-0">
+  <div class="card-body">
+    <app-loading [loading]="viewHandler.loading"></app-loading>
+    <div class="col-12" *ngIf="!viewHandler.loading">
+
+      <div class="row mb-2">
+        <div class="col-3 text-center">
+          <strong>ID:</strong>
+        </div>
+        <div class="col-9">
+          <input placeholder="ID" class="form-control" type="text" value="{{viewHandler.item.id}}" disabled>
+        </div>
+      </div>
+
+        <div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Quantidade:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Quantidade" class="form-control" type="text" value="{{viewHandler.item.quantidade}}" disabled>
+    </div>
+</div>
+ 
+
+    </div>
+  </div>
+</div>

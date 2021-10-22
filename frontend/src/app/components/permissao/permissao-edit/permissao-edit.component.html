@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div *ngIf="!editHandler.isEditMode" class="card-title d-flex align-items-center">Create Permissao</div>
+    <div *ngIf="editHandler.isEditMode" class="card-title d-flex align-items-center">Edit Permissao</div>
+    <div class="card-header-elements">
+      <button id="backButton" class="btn btn-primary d-flex" type="button" (click)="editHandler.backToList()">
+        <i class="material-icons mr-1">keyboard_backspace</i>
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editHandler.form" (ngSubmit)="editHandler.onSubmit()">
+      <div class="row justify-content-around">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div>
+    <label for="nome">Nome</label> <br>
+    <input type="text" placeholder="Nome" formControlName="nome" class="form-control"> <br>
+</div>
+<div>
+    <label for="descricao">Descricao</label> <br>
+    <input type="text" placeholder="Descricao" formControlName="descricao" class="form-control"> <br>
+</div>
+<div>
+    <label for="papeis">Papeis</label> <br>
+    <ng-select id="papeis" [items]="papeisList" bindLabel="nome" [multiple]="true"
+        formControlName="papeis" [loading]="papeisLoading" [typeToSearchText]="'Type to search'"
+        placeholder="Type to search" (search)="searchPapel($event)">
+    </ng-select> <br>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-md-12">
+          <div class="d-flex justify-content-end">
+            <button id="submitButton" class="btn btn-success" type="submit" [disabled]="!editHandler.form.valid">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+   

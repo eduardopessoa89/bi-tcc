@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div *ngIf="!editHandler.isEditMode" class="card-title d-flex align-items-center">Create ItemVenda</div>
+    <div *ngIf="editHandler.isEditMode" class="card-title d-flex align-items-center">Edit ItemVenda</div>
+    <div class="card-header-elements">
+      <button id="backButton" class="btn btn-primary d-flex" type="button" (click)="editHandler.backToList()">
+        <i class="material-icons mr-1">keyboard_backspace</i>
+        Back
+      </button>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editHandler.form" (ngSubmit)="editHandler.onSubmit()">
+      <div class="row justify-content-around">
+        <div class="col-md-6">
+          <div class="form-group">
+            <div>
+    <label for="quantidade">Quantidade</label> <br>
+    <input type="number" placeholder="Quantidade" formControlName="quantidade" class="form-control"> <br>
+</div>
+<div>
+    <label for="produto">Produto</label> <br>
+    <ng-select id="produto" [items]="produtoList" bindLabel="nome" [multiple]="false" formControlName="produto"
+        [loading]="produtoLoading" [typeToSearchText]="'Type to search'" placeholder="Type to search"
+        (search)="searchProduto($event)">
+    </ng-select> <br>
+</div>
+          </div>
+        </div>
+      </div>
+      <div class="row"> 
+        <div class="col-md-12">
+          <div class="d-flex justify-content-end">
+            <button id="submitButton" class="btn btn-success" type="submit" [disabled]="!editHandler.form.valid">Submit</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+  

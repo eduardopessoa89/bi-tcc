@@ -1,0 +1,19 @@
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first">
+            <i id="icon" class="material-icons">account_circle</i>
+            <h5 class="mt-1 mb-3">Please sign in Sales Project </h5>
+        </div>
+
+        <!-- Login Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <input type="text" id="email" class="fadeIn second" name="email" placeholder="Email" formControlName="email">
+            <input type="password" id="senha" class="fadeIn third" name="senha" placeholder="Senha" formControlName="senha">
+            <button type="submit" class="fadeIn fourth mt-3">Sign in</button>
+        </form>
+
+    </div>
+</div>

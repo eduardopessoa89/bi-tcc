@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="card-title d-flex align-items-center">Usuarios</div>
+    <div class="card-header-elements">
+      <button (click)="viewHandler.backToList()" class="btn btn-primary d-flex justify-content-center align-items-center">
+        <i class="material-icons mr-2">arrow_back</i> Back
+      </button>
+    </div>
+  </div>
+
+  <hr class="m-0">
+  <div class="card-body">
+    <app-loading [loading]="viewHandler.loading"></app-loading>
+    <div class="col-12" *ngIf="!viewHandler.loading">
+
+      <div class="row mb-2">
+        <div class="col-3 text-center">
+          <strong>ID:</strong>
+        </div>
+        <div class="col-9">
+          <input placeholder="ID" class="form-control" type="text" value="{{viewHandler.item.id}}" disabled>
+        </div>
+      </div>
+
+        <div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Nome:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Nome" class="form-control" type="text" value="{{viewHandler.item.nome}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Sobrenome:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Sobrenome" class="form-control" type="text" value="{{viewHandler.item.sobrenome}}" disabled>
+    </div>
+</div>
+ <div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Email:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Email" class="form-control" type="text" value="{{viewHandler.item.email}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Papeis:</strong>
+    </div>
+    <div class="col-9">
+        <ng-select id="papeis" [items]="viewHandler.item.papeis" bindLabel="nome" [multiple]="true" 
+        [(ngModel)]="viewHandler.item.papeis" placeholder="Papeis" [readonly]="true">
+        </ng-select>
+    </div>
+</div>
+
+    </div>
+  </div>
+</div>

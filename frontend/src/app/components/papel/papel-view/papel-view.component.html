@@ -1,0 +1,63 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="card-title d-flex align-items-center">Papeis</div>
+    <div class="card-header-elements">
+      <button (click)="viewHandler.backToList()" class="btn btn-primary d-flex justify-content-center align-items-center">
+        <i class="material-icons mr-2">arrow_back</i> Back
+      </button>
+    </div>
+  </div>
+
+  <hr class="m-0">
+  <div class="card-body">
+    <app-loading [loading]="viewHandler.loading"></app-loading>
+    <div class="col-12" *ngIf="!viewHandler.loading">
+
+      <div class="row mb-2">
+        <div class="col-3 text-center">
+          <strong>ID:</strong>
+        </div>
+        <div class="col-9">
+          <input placeholder="ID" class="form-control" type="text" value="{{viewHandler.item.id}}" disabled>
+        </div>
+      </div>
+
+        <div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Nome:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Nome" class="form-control" type="text" value="{{viewHandler.item.nome}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Descricao:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Descricao" class="form-control" type="text" value="{{viewHandler.item.descricao}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Permissoes:</strong>
+    </div>
+    <div class="col-9">
+        <ng-select id="permissoes" [items]="viewHandler.item.permissoes" bindLabel="nome" [multiple]="true" 
+        [(ngModel)]="viewHandler.item.permissoes" placeholder="Permissoes" [readonly]="true">
+        </ng-select>
+    </div>
+</div><div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Usuarios:</strong>
+    </div>
+    <div class="col-9">
+        <ng-select id="usuarios" [items]="viewHandler.item.usuarios" bindLabel="nome" [multiple]="true" 
+        [(ngModel)]="viewHandler.item.usuarios" placeholder="Usuarios" [readonly]="true">
+        </ng-select>
+    </div>
+</div>
+
+    </div>
+  </div>
+</div>

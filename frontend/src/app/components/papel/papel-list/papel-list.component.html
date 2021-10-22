@@ -1,0 +1,78 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <div class="card-title d-flex align-items-center">Papeis</div>
+    <div class="card-header-elements d-flex">
+      <app-simple-search (searchEvent)="listHandler.onSearch($event)" [pageSize]="listHandler.pageSize" [currentPage]="listHandler.currentPage">
+      </app-simple-search>
+      <button *ngxPermissionsOnly="['insert-*', 'insert-papel']" id="createButton" class="btn btn-primary d-flex mr-2" type="button" (click)="listHandler.create()">
+        <i class="material-icons mr-1">add</i>
+        Create
+      </button>
+    </div>
+  </div>
+  <hr class="m-0">
+  <div class="card-body">
+    <div id="table">
+      <app-loading [loading]="listHandler.loading"></app-loading>
+      <table *ngIf="!listHandler.loading" class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th><th scope="col">Descricao</th><th scope="col">Permissoes</th><th scope="col">Usuarios</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr align="center" *ngIf="listHandler.listIsEmpty">
+            <td colspan="100">No items found.</td>
+          </tr>
+          <tr *ngFor="let item of listHandler.items; let i = index">
+            <td id="idPapel-{{i}}">{{ item.id }}</td>
+            <td id="nomePapel-{{i}}">{{ item.nome }}</td><td id="descricaoPapel-{{i}}">{{ item.descricao }}</td><td>
+    <div *ngIf="item.permissoes.length === 0;else permissoesTemplate">
+        <span> No permissoes found. </span>
+    </div>
+    <ng-template #permissoesTemplate>
+        <div *ngFor="let item of item.permissoes">
+            <span>
+                {{ item.nome }}
+            </span> <br>
+        </div>
+    </ng-template>
+</td><td>
+    <div *ngIf="item.usuarios.length === 0;else usuariosTemplate">
+        <span> No usuarios found. </span>
+    </div>
+    <ng-template #usuariosTemplate>
+        <div *ngFor="let item of item.usuarios">
+            <span>
+                {{ item.nome }}
+            </span> <br>
+        </div>
+    </ng-template>
+</td>
+            <td align="center">
+              <button *ngxPermissionsOnly="['read-*', 'read-papel']" id="viewPapel-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.view(item)">
+                <i class="material-icons">visibility</i>
+              </button>
+              <button *ngxPermissionsOnly="['update-*', 'update-papel']" id="editPapel-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.edit(item)">
+                <i class="material-icons text-primary">create</i>
+              </button>
+              <button *ngxPermissionsOnly="['delete-*', 'delete-papel']" id="deletePapel-{{i}}" class="btn bg-transparent" type="button" (click)="listHandler.setRemove(item)">
+                <i class="material-icons text-danger">delete</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="!listHandler.listIsEmpty">
+    <div class="datatable-footer">
+      <app-pagination [totalRecords]="listHandler.totalRecords" [setTotalPages]="listHandler.totalPages"
+                      (pageChanged)="listHandler.onChangePaginator($event)" (pageSizeChanged)="listHandler.onChangePageSize($event)"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-delete-confirmation (onOk)="listHandler.remove()"></app-delete-confirmation>

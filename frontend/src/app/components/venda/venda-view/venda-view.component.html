@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between">
+    <div class="card-title d-flex align-items-center">Vendas</div>
+    <div class="card-header-elements">
+      <button (click)="viewHandler.backToList()" class="btn btn-primary d-flex justify-content-center align-items-center">
+        <i class="material-icons mr-2">arrow_back</i> Back
+      </button>
+    </div>
+  </div>
+
+  <hr class="m-0">
+  <div class="card-body">
+    <app-loading [loading]="viewHandler.loading"></app-loading>
+    <div class="col-12" *ngIf="!viewHandler.loading">
+
+      <div class="row mb-2">
+        <div class="col-3 text-center">
+          <strong>ID:</strong>
+        </div>
+        <div class="col-9">
+          <input placeholder="ID" class="form-control" type="text" value="{{viewHandler.item.id}}" disabled>
+        </div>
+      </div>
+
+        <div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>DataVenda:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="DataVenda" class="form-control" type="text" value="{{viewHandler.item.datavenda}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>Cliente:</strong>
+    </div>
+    <div class="col-9">
+        <input placeholder="Cliente" class="form-control" type="text" value="{{viewHandler.item.cliente}}" disabled>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-3 text-center">
+        <strong>ItensVenda:</strong>
+    </div>
+    <div class="col-9">
+        <ng-select id="itensvenda" [items]="viewHandler.item.itensVenda" bindLabel="quantidade" [multiple]="true" 
+        [(ngModel)]="viewHandler.item.itensVenda" placeholder="ItensVenda" [readonly]="true">
+        </ng-select>
+    </div>
+</div>
+
+    </div>
+  </div>
+</div>

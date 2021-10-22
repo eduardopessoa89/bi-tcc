@@ -1,0 +1,40 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:latest
+    container_name: businesssaleproject-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    expose:
+    - 5432
+    ports:
+      - 5432:5432
+    environment:
+         - POSTGRES_PASSWORD=123
+         - POSTGRES_USER=postgres
+         - POSTGRES_DB=teste
+    restart: unless-stopped
+  backend:
+    build:
+      context: backend/
+    container_name: businesssaleproject-backend
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    restart: unless-stopped
+    depends_on:
+      - postgres
+  frontend:
+    restart: always
+    build:
+      context: frontend/
+      args:
+        env: ${NG_ENV}
+    container_name: businesssaleproject-frontend
+    expose:
+      - 4200
+    ports:
+      - 4200:4200
+volumes:
+  postgres-data:
