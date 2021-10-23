@@ -12,7 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { setAppInjector } from './shared/helpers/app.injector';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { CubejsClientModule } from '@cubejs-client/ngx';
 
+const cubejsOptions = {
+  token: "",
+  options: { apiUrl: "http://localhost:4000/cubejs-api/v1" }
+};
 
 @NgModule({
   declarations: [
@@ -26,6 +31,7 @@ import { NgxPermissionsModule } from 'ngx-permissions';
     HttpClientModule,
     NgxPermissionsModule.forRoot(),
     RouterModule.forRoot(AppRoutes),
+    CubejsClientModule.forRoot(cubejsOptions),
     ToastrModule.forRoot({
       progressBar: true,
       closeButton: true,

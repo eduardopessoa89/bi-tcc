@@ -8,18 +8,19 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { SecurityUtil } from 'src/app/shared/utils/security.util';
 import { NgxPermissionsModule } from 'ngx-permissions';
-   
+
 
 
 import { ProdutoListComponent } from './produto-list/produto-list.component';
 import { ProdutoEditComponent } from './produto-edit/produto-edit.component';
 import { ProdutoViewComponent } from './produto-view/produto-view.component';
+import { ProdutoReportComponent } from './produto-report/produto-report.component';
 
 const routes: Routes = [
   {
     path: '',
     component: ProdutoListComponent,
-    
+
     data: {
       permissions: {
         only: [...SecurityUtil.getPermissionRead('produto')],
@@ -56,6 +57,10 @@ const routes: Routes = [
         redirectTo: '/'
       }
     }
+  },
+  {
+    path: 'reports',
+    component: ProdutoReportComponent,
   }
 ];
 
@@ -63,7 +68,8 @@ const routes: Routes = [
   declarations: [
     ProdutoListComponent,
     ProdutoEditComponent,
-    ProdutoViewComponent
+    ProdutoViewComponent,
+    ProdutoReportComponent
   ],
   imports: [
     CommonModule,
@@ -75,8 +81,7 @@ const routes: Routes = [
     NgSelectModule,
     NgxSmartModalModule.forChild(),
     PaginationModule,
-    NgxPermissionsModule,
-       
+    NgxPermissionsModule
   ],
   providers: [
   ]

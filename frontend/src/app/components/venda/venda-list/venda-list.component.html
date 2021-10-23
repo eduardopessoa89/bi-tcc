@@ -2,6 +2,10 @@
   <div class="card-header d-flex align-items-center justify-content-between">
     <div class="card-title d-flex align-items-center">Vendas</div>
     <div class="card-header-elements d-flex">
+      <button routerLink="/vendas/reports" routerLinkActive="active" class="btn btn-primary d-flex" >
+        <i class="material-icons mr-1">bar_chart</i>
+        Reports
+      </button>
       <app-simple-search (searchEvent)="listHandler.onSearch($event)" [pageSize]="listHandler.pageSize" [currentPage]="listHandler.currentPage">
       </app-simple-search>
       <button *ngxPermissionsOnly="['insert-*', 'insert-venda']" id="createButton" class="btn btn-primary d-flex mr-2" type="button" (click)="listHandler.create()">

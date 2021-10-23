@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-body">
+    <div class="card-text">
+      <canvas
+        *ngIf="ready"
+        baseChart
+        height="height"
+        [datasets]="chartData"
+        [labels]="chartLabels"
+        [chartType]="chartType"
+        [legend]="barChartLegend"
+        [options]="options"
+      >
+      </canvas>
+    </div>
+  </div>
+</div>

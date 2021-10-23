@@ -8,18 +8,19 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { PaginationModule } from 'src/app/shared/components/pagination/pagination.module';
 import { SecurityUtil } from 'src/app/shared/utils/security.util';
 import { NgxPermissionsModule } from 'ngx-permissions';
-   
+
 
 
 import { VendaListComponent } from './venda-list/venda-list.component';
 import { VendaEditComponent } from './venda-edit/venda-edit.component';
 import { VendaViewComponent } from './venda-view/venda-view.component';
+import { VendaReportComponent } from './venda-report/venda-report.component';
 
 const routes: Routes = [
   {
     path: '',
     component: VendaListComponent,
-    
+
     data: {
       permissions: {
         only: [...SecurityUtil.getPermissionRead('venda')],
@@ -56,6 +57,10 @@ const routes: Routes = [
         redirectTo: '/'
       }
     }
+  },
+  {
+    path: 'reports',
+    component: VendaReportComponent
   }
 ];
 
@@ -63,7 +68,8 @@ const routes: Routes = [
   declarations: [
     VendaListComponent,
     VendaEditComponent,
-    VendaViewComponent
+    VendaViewComponent,
+    VendaReportComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +82,7 @@ const routes: Routes = [
     NgxSmartModalModule.forChild(),
     PaginationModule,
     NgxPermissionsModule,
-       
+
   ],
   providers: [
   ]
